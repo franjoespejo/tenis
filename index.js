@@ -103,7 +103,7 @@ function manda(socketi){
 }
 function tiempo_activos(socket){
 	//console.log('ta');
-	//console.log(activos);
+	console.log(activos);
 	activos.forEach(function(element,index,array){
 		element.time=element.time + 1;
 
