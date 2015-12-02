@@ -33,8 +33,8 @@ io.on('connection', function(socket){
 	console.log('\n recibo: ' );
 	console.log(socket);
 	array.push(dataset);
-	io.emit('data-out', { name: 'data', data : array});
-		console.log('\n mando: ' );
+	io.emit('data-out', { name: 'movimiento', data : array});
+	console.log('\n mando: ' );
 	console.log({ name: 'data', data : array});
 });
 });
@@ -57,7 +57,9 @@ function manda(socketi){
 	console.log();
 	if(activos.length==0){
 		socketi.time=0;
-		activos.push(socketi);
+		//activos.push(socketi);
+		
+		activos[socketi.ID]=socketi;
 		console.log('activos-estaba- vacio');
 		console.log(activos);
 		return socketi;
@@ -68,11 +70,14 @@ function manda(socketi){
 		console.log();
 		console.log(socketi);
 		var aux=-1;
-		var itema= activos.filter(function(item,i){
+		/*var itema= activos.filter(function(item,i){
 			aux=i;
 			return item.ID== socketi.ID;
 		});
+		
 		var item=itema[0];
+		*/
+		var item= activos[socketi.ID];
 		console.log(item);
 		if (typeof item != 'undefined') {
 	  // El objeto está en la lista activos
@@ -84,12 +89,13 @@ function manda(socketi){
 	  item.z=socketi.z;
 	  item.ID=socketi.ID;
 
-	  activos[aux]=item;
+	//CUIDAO AQUI  activos[aux]=item;
 	  return item;
 	}else{
 		console.log('pongo tiempo a cero');
 		socketi.time=0;
-		activos.push(socketi);
+		//activos.push(socketi);
+		activos[socketi.ID]=socketi;
 		return socketi;
 	}
 }
