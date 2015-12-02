@@ -33,7 +33,7 @@ io.on('connection', function(socket){
 	console.log('\n recibo: ' );
 	console.log(socket);
 	array.push(data);
-	io.emit('data-out', array);
+	io.emit('data-out', { name: 'data', data : array});
 		console.log('\n mando: ' );
 	console.log(data);
 });
