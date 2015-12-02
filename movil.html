@@ -36,9 +36,9 @@ var x = 34;
 var y = 345;
 var z = 23;
 var isPressed=1;
-//var id = 'abc';
+var id = 'id2';
 
-function writeData(id){
+function writeData(){
 
 var socket = io();
 socket.emit('data-in', {'x':x,'y':y,'z':z,'isPressed': isPressed ,'ID' : id });
@@ -48,18 +48,37 @@ $.getJSON( "http://www.fruitprojects.com/mutua/guardaValor.php?ID=<?php echo $ID
     "XRot="+Math.floor(x)+"&YRot="+Math.floor(y)+"&ZRot="+Math.floor(z)+"&isPressed=0", function(json, val) { });
 */
 }
-writeData(1);
-writeData(1);
-writeData(1);
-writeData(3);
-setTimeout(function() {
-    console.log('Blah blah blah blah extra-blah');
-}, 5000);
+ function handleOrientationEvent(event) {
 
+        x = event.beta ? event.beta : event.y * 90;
+        y = event.gamma ? event.gamma : event.x * 90;
+        z = event.alpha;
+
+       // document.getElementById("posZ").innerText= z;
+
+        window.console && console.info('Raw position: x, y: ', x, y);
+
+        if (!initialX && !initialY) {
+
+            initialX = x;
+            initialY = y;
+
+        } else {
+
+            var positionX = initialX - x;
+            var positionY = initialY - y;
+
+           // ball.style.top = (90 + positionX * 5) + 'px';
+            //ball.style.left = (90 + positionY * 5) + 'px';
+        }
+        writeData();
+    }
 
 
    // setInterval(writeData, 500);
 
+    window.addEventListener("MozOrientation", handleOrientationEvent, true);
+    window.addEventListener("deviceorientation", handleOrientationEvent, true);
 
   
     //setTimeout(isEventFired, 1000);
