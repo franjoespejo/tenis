@@ -12,9 +12,7 @@ app.get('/juego.html', function(req, res){
 app.get('/', function(req, res){
   res.sendFile(__dirname + '/index.html');
 });
-	//data= manda(socket);
-	var i=0;
-	var cont=0;
+
 io.on('connection', function(socket){
 
 	setInterval(tiempo_activos, 1000,socket);
@@ -23,19 +21,16 @@ io.on('connection', function(socket){
   	socket.on('chat message', function(msg){
     io.emit('chat message', msg);
   });
+  	var i=0;
   socket.on('data-in',function (socket) {
 
 //	console.log('data-in got it');
 	//guarda(socket); database maybe
+	data= manda(socket);
+	++i;
 
-	setInterval(function(){
-		console.log(i+'-----');
-		++i;
-		console.log(cont);
-	}, 10000);
-	console.log('\n recibo: ' );
+	console.log('\n recibo: '+i );
 	console.log(socket);
-	++cont;
 	//io.emit('data-out', data);
 });
 });
