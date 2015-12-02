@@ -1,0 +1,73 @@
+<!doctype html>
+
+<html>
+<head>
+
+   <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;">
+    <title>Device Orientation - Demo</title>
+
+    <style>
+
+    html{
+-webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    }
+
+    body{ padding: 0px; margin: 0px;}
+
+ 
+
+
+
+    </style>
+</head>
+<body style="width:100%; background-size:100%; background-repeat: no-repeat; ">
+
+ <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script>
+
+// AJAX
+var x = 34;
+var y = 345;
+var z = 23;
+var isPressed=1;
+//var id = 'abc';
+
+function writeData(id){
+
+var socket = io();
+socket.emit('data-in', {'x':x,'y':y,'z':z,'isPressed': isPressed ,'ID' : id });
+console.log('data-in emitted');
+/*
+$.getJSON( "http://www.fruitprojects.com/mutua/guardaValor.php?ID=<?php echo $ID?>&"+
+    "XRot="+Math.floor(x)+"&YRot="+Math.floor(y)+"&ZRot="+Math.floor(z)+"&isPressed=0", function(json, val) { });
+*/
+}
+writeData(1);
+writeData(1);
+writeData(1);
+writeData(3);
+setTimeout(function() {
+    console.log('Blah blah blah blah extra-blah');
+}, 5000);
+
+
+
+   // setInterval(writeData, 500);
+
+
+  
+    //setTimeout(isEventFired, 1000);
+
+ 
+
+</script>
+
+
+</body>
+</html>

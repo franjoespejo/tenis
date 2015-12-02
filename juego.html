@@ -1,0 +1,55 @@
+<!doctype html>
+
+<html>
+<head>
+
+   <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;">
+    <title>Device Orientation - Demo</title>
+
+    <style>
+
+    html{
+-webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    }
+
+    body{ padding: 0px; margin: 0px;}
+
+ 
+
+
+
+    </style>
+</head>
+<body style="width:100%; background-size:100%; background-repeat: no-repeat; ">
+
+ <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script>
+
+
+var socket = io();
+var canaldatos = socket.on('data-out',function(data){
+
+	console.log(data);
+});
+socket.on('falta',function(data) {
+	// body...
+	console.log(data);
+});
+socket.on('expulsa',function(data) {
+	// body...
+	console.log(data);
+});
+
+
+
+</script>
+
+
+</body>
+</html>

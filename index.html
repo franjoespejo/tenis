@@ -1,0 +1,108 @@
+<!doctype html>
+
+<html>
+<head>
+
+   <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;">
+    <title>Device Orientation - Demo</title>
+
+    <style>
+
+    html{
+-webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    }
+
+    body{ padding: 0px; margin: 0px;}
+
+ 
+
+
+
+    </style>
+</head>
+<body style="width:100%; background-size:100%; background-repeat: no-repeat; ">
+
+ <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script>
+
+// AJAX
+var x = 0;
+var y = 0;
+var z = 0;
+var isPressed=1;
+var id = 'abc';
+
+function writeData(){
+
+var socket = io();
+socket.emit('data-in', {'x':x,'y':y,'z':z,'isPressed': isPressed ,'ID' : id });
+/*
+$.getJSON( "http://www.fruitprojects.com/mutua/guardaValor.php?ID=<?php echo $ID?>&"+
+    "XRot="+Math.floor(x)+"&YRot="+Math.floor(y)+"&ZRot="+Math.floor(z)+"&isPressed=0", function(json, val) { });
+*/
+}
+
+    setInterval(writeData, 50);
+
+
+    var initialX = null;
+    var initialY = null;
+
+
+    function handleOrientationEvent(event) {
+
+        x = event.beta ? event.beta : event.y * 90;
+        y = event.gamma ? event.gamma : event.x * 90;
+        z = event.alpha;
+
+       // document.getElementById("posZ").innerText= z;
+
+        window.console && console.info('Raw position: x, y: ', x, y);
+
+        if (!initialX && !initialY) {
+
+            initialX = x;
+            initialY = y;
+
+        } else {
+
+            var positionX = initialX - x;
+            var positionY = initialY - y;
+
+           // ball.style.top = (90 + positionX * 5) + 'px';
+            //ball.style.left = (90 + positionY * 5) + 'px';
+        }
+    }
+
+    function isEventFired() {
+
+       // document.getElementById("posZ").innerText= "jajajaja";
+
+        //updateElm("http://www.fruitprojects.com/mutua/muestraValor.php",  "posZ");
+
+        /*if (!initialX && !initialY) {
+            var warningElement = document.getElementById('warning');
+            warningElement.innerText = 'Warning: Cannot receive device orientation events, this browser is not supported.';
+            warningElement.style.display = 'inline-block';
+        }*/
+    }
+
+    // Webkit en Mozilla variant beide registreren.
+    window.addEventListener("MozOrientation", handleOrientationEvent, true);
+    window.addEventListener("deviceorientation", handleOrientationEvent, true);
+
+    //setTimeout(isEventFired, 1000);
+
+ 
+
+</script>
+
+
+</body>
+</html>
