@@ -48,7 +48,7 @@ $.getJSON( "http://www.fruitprojects.com/mutua/guardaValor.php?ID=<?php echo $ID
 */
 }
 
-    setInterval(writeData, 50);
+   // setInterval(writeData, 50);
 
 
     var initialX = null;
@@ -78,6 +78,7 @@ $.getJSON( "http://www.fruitprojects.com/mutua/guardaValor.php?ID=<?php echo $ID
            // ball.style.top = (90 + positionX * 5) + 'px';
             //ball.style.left = (90 + positionY * 5) + 'px';
         }
+        writeData();
     }
 
     function isEventFired() {
