@@ -107,9 +107,23 @@ function tiempo_activos(socket){
 
 	for (var k in activos){
     if (activos.hasOwnProperty(k)) {
-    	var aux= activos[k];
-
-         console.log("Key is " + k + ", value is"+ aux.time+ toString(aux));
+    	var elment= activos[k];
+    	++element.time;
+         console.log("Key is " + k + ", value is"+ element.time);
+         if(element.time>= tiempo_empieza_cuenta){
+			if(element.time >= tiempo_expulsa){
+				console.log('explusa');
+				
+				
+					activos[k]='';
+					socket.emit('expulsa',{name: 'explusa', data: element.ID});
+				
+			}else{
+				var sum= parseInt(tiempo_expulsa)-parseInt(element.time);
+				console.log('falta'+sum);
+				socket.emit('falta',{name : element.ID, data: sum});
+			}
+		}
     }
 }
 	activos.forEach(function(element,index,array){
