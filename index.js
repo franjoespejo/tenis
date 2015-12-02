@@ -35,7 +35,7 @@ io.on('connection', function(socket){
 	array.push(dataset);
 	io.emit('data-out', { name: 'data', data : array});
 		console.log('\n mando: ' );
-	console.log(dataset);
+	console.log({ name: 'data', data : array});
 });
 });
 
