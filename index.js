@@ -25,17 +25,17 @@ io.on('connection', function(socket){
 
 //	console.log('data-in got it');
 	//guarda(socket); database maybe
-	data= manda(socket);
+	dataset= manda(socket);
 	//io.emit('test',{name:'alex', data: 'guudtv'});
 	var array =[];
 
 	//data= gestiona(socket);
 	console.log('\n recibo: ' );
 	console.log(socket);
-	array.push(data);
+	array.push(dataset);
 	io.emit('data-out', { name: 'data', data : array});
 		console.log('\n mando: ' );
-	console.log(data);
+	console.log(dataset);
 });
 });
 
@@ -82,6 +82,7 @@ function manda(socketi){
 	  item.x=socketi.x;
 	  item.y=socketi.y;
 	  item.z=socketi.z;
+	  item.ID=socketi.ID;
 
 	  activos[aux]=item;
 	  return item;
@@ -96,7 +97,7 @@ function manda(socketi){
 }
 function tiempo_activos(socket){
 	//console.log('ta');
-	console.log(activos);
+	//console.log(activos);
 	activos.forEach(function(element,index,array){
 		element.time=element.time + 1;
 
@@ -106,12 +107,12 @@ function tiempo_activos(socket){
 				
 				
 					array.splice(index, 1);
-					socket.emit('expulsa',{'name': 'explusa', 'data': element.ID});
+					socket.emit('expulsa',{name: 'explusa', data: element.ID});
 				
 			}else{
 				var sum= parseInt(tiempo_expulsa)-parseInt(element.time);
 				console.log('falta'+sum);
-				socket.emit('falta',{'name' : element.ID, 'data': sum});
+				socket.emit('falta',{name : element.ID, data: sum});
 			}
 		}
 	});
