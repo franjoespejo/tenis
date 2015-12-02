@@ -26,8 +26,16 @@ io.on('connection', function(socket){
 //	console.log('data-in got it');
 	//guarda(socket); database maybe
 	//data= manda(socket);
+	var i=0;
+	var cont=0;
+	setInterval(function(){
+		console.log(i+'-----');
+		++i;
+		console.log(cont);
+	}, 10000);
 	console.log('\n recibo: ' );
 	console.log(socket);
+	++cont;
 	//io.emit('data-out', data);
 });
 });
