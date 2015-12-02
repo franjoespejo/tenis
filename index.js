@@ -131,6 +131,7 @@ function tiempo_activos(socket){
 	for (var k in activos){
     if (activos.hasOwnProperty(k)) {
     	var element= activos[k];
+    	if(element!= undefined){
     	element.time=element.time+1;
          console.log("Key is " + k + ", value is"+ element.time);
          if(element.time>= tiempo_empieza_cuenta){
@@ -148,7 +149,7 @@ function tiempo_activos(socket){
 				socket.emit('falta',{name : element.ID, data: sum});
 			}
 		}
-    }
+    }}
 }
 	
 
