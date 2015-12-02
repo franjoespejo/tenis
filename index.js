@@ -26,10 +26,10 @@ io.on('connection', function(socket){
 //	console.log('data-in got it');
 	//guarda(socket); database maybe
 	//data= manda(socket);
-	io.emit('test',{name:'alex', data: 'guudtv'});
+	//io.emit('test',{name:'alex', data: 'guudtv'});
 	console.log('\n recibo: ' );
 	console.log(socket);
-	//io.emit('data-out', data);
+	io.emit('data-out', data);
 });
 });
 
