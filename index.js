@@ -30,6 +30,8 @@ io.on('connection', function(socket){
 	console.log('\n recibo: ' );
 	console.log(socket);
 	io.emit('data-out', data);
+		console.log('\n mando: ' );
+	console.log(data);
 });
 });
 
