@@ -107,7 +107,7 @@ function tiempo_activos(socket){
 
 	for (var k in socket){
     if (socket.hasOwnProperty(k)) {
-         console.log("Key is " + k + ", value is" + socket[k][time]);
+         console.log("Key is " + k + ", value is" + toString(socket[k]);
     }
 }
 	activos.forEach(function(element,index,array){
