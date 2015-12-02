@@ -25,7 +25,7 @@ io.on('connection', function(socket){
 
 //	console.log('data-in got it');
 	//guarda(socket); database maybe
-	//data= manda(socket);
+	data= manda(socket);
 	//io.emit('test',{name:'alex', data: 'guudtv'});
 	console.log('\n recibo: ' );
 	console.log(socket);
