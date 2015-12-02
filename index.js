@@ -70,6 +70,9 @@ function manda(socketi){
 
 	  item.time=0;
 	  activos[aux].time=item.time;
+	  activos[aux].x=item.x;
+	  activos[aux].y=item.y;
+	  
 	  return item;
 	}else{
 		console.log('pongo tiempo a cero');
