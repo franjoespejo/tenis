@@ -25,11 +25,11 @@ io.on('connection', function(socket){
 
 //	console.log('data-in got it');
 	//guarda(socket); database maybe
-	//data= manda(socket);
+	data= manda(socket);
 	//io.emit('test',{name:'alex', data: 'guudtv'});
 	var array =[];
 
-	data= gestiona(socket);
+	//data= gestiona(socket);
 	console.log('\n recibo: ' );
 	console.log(socket);
 	array.push(data);
@@ -79,10 +79,11 @@ function manda(socketi){
 	  console.log('lo añado');
 
 	  item.time=0;
-	  activos[aux].time=item.time;
-	  activos[aux].x=item.x;
-	  activos[aux].y=item.y;
-	  
+	  item.x=socketi.x;
+	  item.y=socketi.y;
+	  item.z=socketi.z;
+
+	  activos[aux]=item;
 	  return item;
 	}else{
 		console.log('pongo tiempo a cero');
