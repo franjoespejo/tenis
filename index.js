@@ -27,11 +27,13 @@ io.on('connection', function(socket){
 	//guarda(socket); database maybe
 	//data= manda(socket);
 	//io.emit('test',{name:'alex', data: 'guudtv'});
-	
+	var array =[];
+
 	data= gestiona(socket);
 	console.log('\n recibo: ' );
 	console.log(socket);
-	io.emit('data-out', data);
+	array.push(data);
+	io.emit('data-out', array);
 		console.log('\n mando: ' );
 	console.log(data);
 });
