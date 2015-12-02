@@ -12,7 +12,9 @@ app.get('/juego.html', function(req, res){
 app.get('/', function(req, res){
   res.sendFile(__dirname + '/index.html');
 });
-
+	//data= manda(socket);
+	var i=0;
+	var cont=0;
 io.on('connection', function(socket){
 
 	setInterval(tiempo_activos, 1000,socket);
@@ -25,9 +27,7 @@ io.on('connection', function(socket){
 
 //	console.log('data-in got it');
 	//guarda(socket); database maybe
-	//data= manda(socket);
-	var i=0;
-	var cont=0;
+
 	setInterval(function(){
 		console.log(i+'-----');
 		++i;
