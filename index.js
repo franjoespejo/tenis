@@ -132,7 +132,7 @@ function tiempo_activos(socket){
 	for (var k in activos){
     if (activos.hasOwnProperty(k)) {
     	var element= activos[k];
-    	if(element!= undefined){
+
     	element.time=element.time+1;
          console.log("Key is " + k + ", value is"+ element.time);
          if(element.time>= tiempo_empieza_cuenta){
@@ -143,14 +143,14 @@ function tiempo_activos(socket){
 					delete activos[k];
 					socket.emit('expulsa',{name: 'explusa', data: element.ID});
 				
-					gestiona_cola();
+					//gestiona_cola();
 			}else{
 				var sum= parseInt(tiempo_expulsa)-parseInt(element.time);
 				console.log('falta'+sum);
 				socket.emit('falta',{name : element.ID, data: sum});
 			}
 		}
-    }}
+    }
 }
 	
 
