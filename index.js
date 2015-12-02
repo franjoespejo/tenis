@@ -25,9 +25,9 @@ io.on('connection', function(socket){
 
 //	console.log('data-in got it');
 	//guarda(socket); database maybe
-	data= manda(socket);
-	console.log('\n mando: ' );
-	console.log(data);
+	//data= manda(socket);
+	console.log('\n recibo: ' );
+	console.log(socket);
 	//io.emit('data-out', data);
 });
 });

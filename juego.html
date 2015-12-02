@@ -34,7 +34,6 @@
 
 var socket = io();
 var canaldatos = socket.on('data-out',function(data){
-
 	console.log(data);
 });
 socket.on('falta',function(data) {
