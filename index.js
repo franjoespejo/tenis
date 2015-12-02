@@ -21,15 +21,13 @@ io.on('connection', function(socket){
   	socket.on('chat message', function(msg){
     io.emit('chat message', msg);
   });
-  	var i=0;
   socket.on('data-in',function (socket) {
 
 //	console.log('data-in got it');
 	//guarda(socket); database maybe
 	data= manda(socket);
-	++i;
-
-	console.log('\n recibo: '+i );
+	
+	console.log('\n recibo: ' );
 	console.log(socket);
 	//io.emit('data-out', data);
 });
