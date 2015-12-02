@@ -28,7 +28,7 @@ io.on('connection', function(socket){
 	data= manda(socket);
 	console.log('\n mando: ' );
 	console.log(data);
-	io.emit('data-out', data);
+	//io.emit('data-out', data);
 });
 });
 
