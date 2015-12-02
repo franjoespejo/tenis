@@ -19,14 +19,14 @@ io.on('connection', function(socket){
 	
 	console.log('conectado');
   	socket.on('chat message', function(msg){
-   
+    io.emit('chat message', msg);
   });
   socket.on('data-in',function (socket) {
 
 //	console.log('data-in got it');
 	//guarda(socket); database maybe
-	data= manda(socket);
-	 io.emit('test', 'guudtv');
+	//data= manda(socket);
+	io.emit('test',{name:'alex', data: 'guudtv'});
 	console.log('\n recibo: ' );
 	console.log(socket);
 	//io.emit('data-out', data);
