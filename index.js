@@ -107,6 +107,7 @@ function tiempo_activos(socket){
 	activos.forEach(function(element,index,array){
 		element.time=element.time + 1;
 		console.log(element);
+		console.log('dentro');
 		if(element.time>= tiempo_empieza_cuenta){
 			if(element.time >= tiempo_expulsa){
 				console.log('explusa');
