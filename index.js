@@ -105,11 +105,11 @@ function tiempo_activos(socket){
 	//console.log('ta');
 	console.log(activos);
 
-	for (var k in socket){
-    if (socket.hasOwnProperty(k)) {
-    	var aux= socket[k];
+	for (var k in activos){
+    if (activos.hasOwnProperty(k)) {
+    	var aux= activos[k];
 
-         console.log("Key is " + k + ", value is"+ aux+ toString(aux));
+         console.log("Key is " + k + ", value is"+ aux.time+ toString(aux));
     }
 }
 	activos.forEach(function(element,index,array){
