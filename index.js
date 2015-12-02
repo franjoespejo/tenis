@@ -118,8 +118,9 @@ function manda(socketi){
 
 function gestiona_cola(){
 	if( activos.length< max_jugadores){
+		if(cola.shift()!= undefined){
 		activos.push(cola.shift());
-	}
+	}}
 	
 
 }
