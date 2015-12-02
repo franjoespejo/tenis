@@ -115,7 +115,7 @@ function tiempo_activos(socket){
 				console.log('explusa');
 				
 				
-					activos[k]='';
+					delete activos[k];
 					socket.emit('expulsa',{name: 'explusa', data: element.ID});
 				
 			}else{
