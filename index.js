@@ -3,6 +3,10 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var tiempo_expulsa= 10;
 var tiempo_empieza_cuenta=5;
+
+var max_jugadores=5;
+
+
 app.get('/movil.html', function(req, res){
   res.sendFile(__dirname + '/movil.html');
 });
@@ -33,7 +37,11 @@ io.on('connection', function(socket){
 	console.log('\n recibo: ' );
 	console.log(socket);
 	array.push(dataset);
+	if(activos[socket.ID] != undefined){
 	io.emit('data-out', { name: 'movimiento', data : array});
+	}else{
+		io.emit('client',{name: 'cliente', data: 'en_lista_espera'});
+	}
 	console.log('\n mando: ' );
 	console.log({ name: 'data', data : array});
 });
@@ -46,6 +54,7 @@ http.listen(8080, function(){
 
 
 var activos = [];
+var cola=[];
 
 function gestiona(socketi){
 socketi.time=0;
@@ -55,6 +64,11 @@ return socketi;
 
 function manda(socketi){
 	console.log();
+	if(activos.length>=max_jugadores){
+		cola[socketi.ID]=socketi;
+		io.emit('cola',{user : socketi.ID, data: 'estás en espera'});
+
+	}else{
 	if(activos.length==0){
 		socketi.time=0;
 		//activos.push(socketi);
@@ -99,8 +113,17 @@ function manda(socketi){
 		return socketi;
 	}
 }
+}
+}
+
+function gestiona_cola(){
+	if( activos.length< max_jugadores){
+		activos.push(cola.shift());
+	}
+	
 
 }
+
 function tiempo_activos(socket){
 	//console.log('ta');
 	console.log(activos);
@@ -118,6 +141,7 @@ function tiempo_activos(socket){
 					delete activos[k];
 					socket.emit('expulsa',{name: 'explusa', data: element.ID});
 				
+					gestiona_cola();
 			}else{
 				var sum= parseInt(tiempo_expulsa)-parseInt(element.time);
 				console.log('falta'+sum);
@@ -126,24 +150,6 @@ function tiempo_activos(socket){
 		}
     }
 }
-	activos.forEach(function(element,index,array){
-		element.time=element.time + 1;
-		console.log(element);
-		console.log('dentro');
-		if(element.time>= tiempo_empieza_cuenta){
-			if(element.time >= tiempo_expulsa){
-				console.log('explusa');
-				
-				
-					array.splice(index, 1);
-					socket.emit('expulsa',{name: 'explusa', data: element.ID});
-				
-			}else{
-				var sum= parseInt(tiempo_expulsa)-parseInt(element.time);
-				console.log('falta'+sum);
-				socket.emit('falta',{name : element.ID, data: sum});
-			}
-		}
-	});
+	
 
 }
