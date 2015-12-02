@@ -118,9 +118,11 @@ function manda(socketi){
 
 function gestiona_cola(){
 	if( activos.length< max_jugadores){
-		if(cola.shift()!= undefined){
-		activos.push(cola.shift());
-	}}
+		var aux= cola.shift();
+		if(aux != undefined){
+		activos[aux.ID]=aux;
+		}
+	}
 	
 
 }
@@ -143,7 +145,7 @@ function tiempo_activos(socket){
 					delete activos[k];
 					socket.emit('expulsa',{name: 'explusa', data: element.ID});
 				
-					//gestiona_cola();
+					gestiona_cola();
 			}else{
 				var sum= parseInt(tiempo_expulsa)-parseInt(element.time);
 				console.log('falta'+sum);
