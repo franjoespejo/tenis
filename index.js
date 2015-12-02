@@ -106,12 +106,12 @@ function tiempo_activos(socket){
 				
 				
 					array.splice(index, 1);
-					socket.emit('expulsa',element.ID);
+					socket.emit('expulsa',{'name': 'explusa', 'data': element.ID);
 				
 			}else{
 				var sum= parseInt(tiempo_expulsa)-parseInt(element.time);
 				console.log('falta'+sum);
-				socket.emit('falta',{'id' : element.ID, tiempo: sum});
+				socket.emit('falta',{'name' : element.ID, 'data': sum});
 			}
 		}
 	});
