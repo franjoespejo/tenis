@@ -104,6 +104,12 @@ function manda(socketi){
 function tiempo_activos(socket){
 	//console.log('ta');
 	console.log(activos);
+
+	for (var k in socket){
+    if (socket.hasOwnProperty(k)) {
+         console.log("Key is " + k + ", value is" + socket[k]);
+    }
+}
 	activos.forEach(function(element,index,array){
 		element.time=element.time + 1;
 		console.log(element);
