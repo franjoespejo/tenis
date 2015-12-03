@@ -1,8 +1,8 @@
-# Tenis- socket
+# Tennis game with sockets
 
 This is the source code for a pof using socket.
 
-The tenis game is composed by three parts.
+The tennis game is composed by three parts.
 
 - Server socket.io
 - Server php 
