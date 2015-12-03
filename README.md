@@ -1,7 +1,11 @@
-# chat-example
+# Tenis- socket
 
-This is the source code for a very simple chat example used for 
-the [Getting Started](http://socket.io/get-started/chat/) guide 
-of the Socket.IO website.
+This is the source code for a pof using socket.
 
-Please refer to it to learn how to run this application.
+The tenis game is composed by three parts.
+
+- Server socket.io
+- Server php 
+- Client unity program
+
+The server with socket.io owns all the logic, and handles all the communication.
