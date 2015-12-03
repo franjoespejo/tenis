@@ -1,4 +1,4 @@
-# Tennis game with sockets
+# Tennis game with socket.io
 
 This is the source code for a pof using socket.
 
