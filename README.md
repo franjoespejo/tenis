@@ -22,5 +22,6 @@ I assume you have a GNU/Linux Server, with:
 Therefore you must follow the bellow steps:
 
 - git clone https://github.com/franjoespejo/tenis/
+- cd tenis
 - npm install
 - pm2 start index.js
