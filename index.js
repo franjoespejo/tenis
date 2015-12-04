@@ -3,8 +3,10 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var tiempo_expulsa= 10;
 var tiempo_empieza_cuenta=5;
-
 var max_jugadores=5;
+
+var tw_user='franjoespejo';
+var tw_pic='http://url.jpg';
 
 
 app.get('/movil.html', function(req, res){
@@ -40,7 +42,7 @@ io.on('connection', function(socket){
 	if(activos[socket.ID] != undefined){
 	io.emit('data-out', { name: 'movimiento', data : array});
 	}else{
-		io.emit('client',{name: 'cliente', data: 'en_lista_espera'});
+		io.emit('client',{name: 'cliente', data: 'sigues_en_espera'});
 	}
 	console.log('\n mando: ' );
 	console.log({ name: 'data', data : array});
@@ -65,14 +67,22 @@ return socketi;
 function manda(socketi){
 	console.log();
 	if(activos.length>=max_jugadores){
-		cola[socketi.ID]=socketi;
-		io.emit('cola',{user : socketi.ID, data: 'estás en espera'});
-
+		if(cola[socketi.ID]== undefined){
+			cola[socketi.ID]=socketi;
+			cola[socketi.tw_user]=tw_user;
+			cola[socketi.tw_pic]=tw_pic;
+			io.emit('cola',{user: 'guudtv', data : cola });
+			io.emit('client',{user : socketi.ID, data: 'en_espera'});
+		}
+		
+		
+		
 	}else{
 	if(activos.length==0){
 		socketi.time=0;
 		//activos.push(socketi);
-		
+		socketi.tw_user=tw_user;
+		socketi.tw_pic=tw_pic;		
 		activos[socketi.ID]=socketi;
 		console.log('activos-estaba- vacio');
 		console.log(activos);
@@ -97,17 +107,22 @@ function manda(socketi){
 	  // El objeto está en la lista activos
 	  console.log('lo añado');
 
-	  item.time=0;
-	  item.x=socketi.x;
-	  item.y=socketi.y;
-	  item.z=socketi.z;
-	  item.ID=socketi.ID;
+		item.tw_user=tw_user;
+		item.tw_pic=tw_pic;
+	 	item.time=0;
+	  	item.x=socketi.x;
+	  	item.y=socketi.y;
+	  	item.z=socketi.z;
+	  	item.ID=socketi.ID;
 
 	//CUIDAO AQUI  activos[aux]=item;
 	  return item;
 	}else{
 		console.log('pongo tiempo a cero');
 		socketi.time=0;
+		//activos.push(socketi);
+		socketi.tw_user=tw_user;
+		socketi.tw_pic=tw_pic;		
 		//activos.push(socketi);
 		activos[socketi.ID]=socketi;
 		return socketi;
