@@ -2,7 +2,7 @@
 
 This is the source code for a poc using socket.io as main component for a game system.
 
-The tennis game is composed of three parts.
+The tennis game is composed of two parts.
 
 - Server socket.io (express will also run on it)
 - Client unity program
